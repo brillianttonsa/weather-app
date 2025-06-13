@@ -4,59 +4,8 @@
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>Weather App</title> 
+        <link rel="stylesheet" href="style.css">
         
-        <style>
-            body { 
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0; 
-            }
-            .container { 
-                max-width: 400px;
-                margin: 0 auto;
-                padding: 20px; 
-                background-color: #fff;
-                border-radius: 10px; 
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-            }
-            h1 {
-                text-align: center; 
-            }
-            .input-container { 
-                display: flex;
-                margin-top: 20px;
-            } 
-            input[type="text"] {
-                flex: 1;
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc; 
-                border-radius: 5px 0 0 5px; 
-            }
-            button { 
-                padding: 10px; 
-                background-color: #007bff; 
-                color: #fff; 
-                border: none; 
-                border-radius: 0 5px 5px 0; 
-                cursor: pointer; 
-            } 
-            .weather-info { 
-                margin-top: 20px; 
-                padding: 10px; 
-                border: 1px solid #ccc; 
-                border-radius: 5px; 
-                background-color: #f0f0f0; 
-            }
-            .weather-info h2 {
-                text-align: center;
-            }
-            .weather-details {
-                margin-top: 10px;
-            }
-            .weather-details p {
-                font-size: 16px;
-            }
-        </style> 
     </head> 
     <body> 
         <div class="container"> 
@@ -70,54 +19,6 @@
             </div> 
         </div> 
     
-        <script>
-            let apiKey = '01f4f6c6a04c0d195f968f5c8f62b28c';
-
-            // Function to get weather data and display it
-            const sWeather = () => {
-                let city = document.getElementById('location').value;
-                const weatherInfoDiv = document.getElementById('weatherInfo');
-                
-                // Display "Loading..." text
-                weatherInfoDiv.innerHTML = '<p>Loading...</p>';
-
-                const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&q=${city}`;
-                
-                // Fetch data from the API
-                fetch(url)
-                    .then(responsive => responsive.json())
-                    .then(data => {
-                        // Check if the response is successful
-                        if (data.cod === 200) {
-                            // Extract relevant data
-                            const temperature = data.main.temp;
-                            const humidity = data.main.humidity;
-                            const pressure = data.main.pressure;
-                            const cityName = data.name;
-                            const country = data.sys.country;
-
-                            // Create HTML content to display the weather data
-                            const weatherHtml = `
-                                <h2>Weather in ${cityName}, ${country}</h2>
-                                <div class="weather-details">
-                                    <p><strong>Temperature:</strong> ${temperature}°C</p>
-                                    <p><strong>Humidity:</strong> ${humidity}%</p>
-                                    <p><strong>Pressure:</strong> ${pressure} hPa</p>
-                                </div>
-                            `;
-
-                            // Insert the weather data into the weatherInfo div
-                            weatherInfoDiv.innerHTML = weatherHtml;
-                        } else {
-                            // Handle errors (e.g., city not found)
-                            weatherInfoDiv.innerHTML = `<p>City not found, please try again.</p>`;
-                        }
-                    })
-                    .catch(error => {
-                        // Handle network errors
-                        weatherInfoDiv.innerHTML = `<p>Error fetching weather data: ${error.message}</p>`;
-                    });
-            }
-        </script> 
+        <script src="index.js"></script> 
     </body> 
 </html>
